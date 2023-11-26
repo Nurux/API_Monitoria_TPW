@@ -33,8 +33,8 @@ app.post('/cadastro', (req, res) => {
         if(erro){res.send({erro: erro})}
 
         cnx.query(
-            'Insert into pessoa(nome, idade, senha) values(?,?,?)',
-            [req.body.nome, req.body.idade, req.body.senha],
+            'Insert into pessoa(idade, nome, senha) values(?,?,?)',
+            [req.body.idade, req.body.nome, req.body.senha],
             
             (err, resultado) => {
                 cnx.release()
