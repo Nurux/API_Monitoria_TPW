@@ -2,6 +2,9 @@ const express = require('express')
 const port = 3000
 const app = express()
 const banco = require('./database/bd').conexao
+const cors = require('cors')
+
+app.use(cors())
 
 app.get('', (req, res) => {
     banco.getConnection((erro, cnx) => {
