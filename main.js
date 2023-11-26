@@ -54,4 +54,28 @@ app.post('/cadastro', (req, res) => {
     })
 })
 
+app.delete('/remover', (req, res) => {
+    banco.getConnection((erro, cnx) => {
+        if(erro){res.send({erro: erro})}
+
+        cnx.query(
+            'Delete from pessoa Where = ?',
+            [req.body.nome],
+            
+            (err, resultado) => {
+                cnx.release()
+
+                if(err){res.send({erro: err})}
+
+                let response ={
+                    msg: 'Usuario removido com sucesso!',
+                    usuario: req.body.nome
+                }
+
+                res.send(response)
+            }
+        )
+    })
+})
+
 app.listen(port, console.log('Server rodando'))
