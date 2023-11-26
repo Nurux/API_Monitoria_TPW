@@ -54,28 +54,28 @@ app.post('/cadastro', (req, res) => {
     })
 })
 
-// app.delete('/remover', (req, res) => {
-//     banco.getConnection((erro, cnx) => {
-//         if(erro){res.send({erro: erro})}
+app.delete('/remover', (req, res) => {
+    banco.getConnection((erro, cnx) => {
+        if(erro){res.send.status(500)({error: erro})}
 
-//         cnx.query(
-//             'Delete from pessoa Where = ?',
-//             [req.body.nome],
-            
-//             (err, resultado) => {
-//                 cnx.release()
+        cnx.query(
+            'Delete from pessoa where = ?',
+            [req.body.name],
 
-//                 if(err){res.send({msg: 'nao deletou', erro: err})}
+            (err, resultado) => {
+                cnx.release()
 
-//                 const response ={
-//                     msg: 'Usuario removido com sucesso!',
-//                     usuario: req.body.nome
-//                 }
+                if(err){res.send({msg: 'Não deletou', error: err})}
 
-//                 res.status(202).send(response)
-//             }
-//         )
-//     })
-// })
+                const response = {
+                    msg: "Usuario deletado com sucesso!",
+                    usuario: req.body.name
+                }
+
+                res.send(response)
+            }
+        )
+    })
+})
 
 app.listen(port, console.log('Server rodando'))
