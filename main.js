@@ -65,9 +65,9 @@ app.delete('/remover', (req, res) => {
             (err, resultado) => {
                 cnx.release()
 
-                if(err){res.send({erro: err})}
+                if(err){res.send({msg: 'nao deletou', erro: err})}
 
-                let response ={
+                const response ={
                     msg: 'Usuario removido com sucesso!',
                     usuario: req.body.nome
                 }
