@@ -72,7 +72,7 @@ app.delete('/remover', (req, res) => {
                     usuario: req.body.nome
                 }
 
-                res.send(response)
+                res.status(202).send(response)
             }
         )
     })
