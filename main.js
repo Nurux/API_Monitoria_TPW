@@ -34,7 +34,7 @@ app.post('/cadastro', (req, res) => {
 
         cnx.query(
             'Insert into pessoa(nome, idade, senha) values(?,?,?)',
-            [req.body.nome, req.body.idade, req.body.senha],
+            [req.query.nome, req.query.idade, req.query.senha],
             
             (err, resultado) => {
                 cnx.release()
@@ -43,7 +43,7 @@ app.post('/cadastro', (req, res) => {
 
                 let response ={
                     msg: 'Usuario cadastro com sucesso!',
-                    usuario: req.body.nome
+                    usuario: req.query.nome
                 }
 
                 res.send(response)
