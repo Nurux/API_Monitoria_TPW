@@ -8,6 +8,13 @@ app.use(cors())
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use((req, res) => {
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "PUT, POST, GET, DELETE, PATCH, OPTIONS"
+    );
+});
+
 app.get('', (req, res) => {
     banco.getConnection((erro, cnx) => {
         if(erro){res.send({erro: erro})}
