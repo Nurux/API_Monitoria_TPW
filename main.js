@@ -55,13 +55,13 @@ app.post('/cadastro', (req, res) => {
     })
 })
 
-app.delete('/remover', (req, res) => {
+app.delete('/remover/:nome', (req, res) => {
     banco.getConnection((erro, cnx) => {
         if(erro){res.send.status(500)({error: erro})}
 
         cnx.query(
             'Delete from pessoa where nome = ?',
-            [req.body.name],
+            [req.params.nome],
 
             (err, resultado) => {
                 cnx.release()
